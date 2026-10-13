@@ -100,7 +100,7 @@ fields.forEach((field) => {
 });
 
 // Paste your Formspree form address here (see formspree.io)
-const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
+const FORM_ENDPOINT = 'https://formspree.io/f/mqpedorn';
 
 form.addEventListener('submit', async (event) => {
   event.preventDefault();
@@ -113,7 +113,7 @@ form.addEventListener('submit', async (event) => {
     return;
   }
 
-  if (FORM_ENDPOINT.includes('https://formspree.io/f/mqpedorn')) {
+  if (FORM_ENDPOINT.includes('YOUR_FORM_ID')) { // placeholder check
     statusMsg.classList.add('error');
     statusMsg.textContent = 'The form is not connected to an email service yet.';
     return;
@@ -129,12 +129,19 @@ form.addEventListener('submit', async (event) => {
       body: new FormData(form),
       headers: { Accept: 'application/json' }
     });
-    if (!response.ok) throw new Error('Request failed');
+    const data = await response.json().catch(() => ({}));
+    if (!response.ok) {
+      const reason = (data.errors && data.errors.map((e) => e.message).join(', '))
+        || data.error
+        || 'server replied ' + response.status;
+      throw new Error(reason);
+    }
     statusMsg.textContent = 'Thanks! Your message has been sent.';
     form.reset();
   } catch (error) {
+    console.error('Form error:', error);
     statusMsg.classList.add('error');
-    statusMsg.textContent = 'Something went wrong. Please try again or email me directly.';
+    statusMsg.textContent = 'Could not send (' + error.message + '). Please try again or email me directly.';
   } finally {
     submitBtn.disabled = false;
     submitBtn.textContent = 'Send message';
