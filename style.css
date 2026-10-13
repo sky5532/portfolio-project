@@ -495,3 +495,7 @@ body.dark .project-link { color: #5fe0cf; }
 }
 .project-card:hover .project-thumb img { transform: scale(1.05); }
 .project-thumb::before { content: none; }
+
+/* Contact form states */
+.form-status.error { color: #ff9a9a; }
+.contact-form .btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }

@@ -90,7 +90,7 @@ function validateField(field) {
   return valid;
 }
 
-const fields = form.querySelectorAll('input, textarea');
+const fields = form.querySelectorAll('#name, #email, #message');
 
 fields.forEach((field) => {
   field.addEventListener('blur', () => validateField(field));
@@ -99,20 +99,49 @@ fields.forEach((field) => {
   });
 });
 
-form.addEventListener('submit', (event) => {
-  event.preventDefault();
-  statusMsg.textContent = '';
-  const results = Array.from(fields).map(validateField);
+// Paste your Formspree form address here (see formspree.io)
+const FORM_ENDPOINT = 'https://formspree.io/f/YOUR_FORM_ID';
 
-  if (results.every(Boolean)) {
+form.addEventListener('submit', async (event) => {
+  event.preventDefault();
+  statusMsg.className = 'form-status';
+  statusMsg.textContent = '';
+
+  const results = Array.from(fields).map(validateField);
+  if (!results.every(Boolean)) {
+    form.querySelector('.invalid').focus();
+    return;
+  }
+
+  if (FORM_ENDPOINT.includes('https://formspree.io/f/mqpedorn')) {
+    statusMsg.classList.add('error');
+    statusMsg.textContent = 'The form is not connected to an email service yet.';
+    return;
+  }
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+  submitBtn.textContent = 'Sending...';
+
+  try {
+    const response = await fetch(FORM_ENDPOINT, {
+      method: 'POST',
+      body: new FormData(form),
+      headers: { Accept: 'application/json' }
+    });
+    if (!response.ok) throw new Error('Request failed');
     statusMsg.textContent = 'Thanks! Your message has been sent.';
     form.reset();
-  } else {
-    form.querySelector('.invalid').focus();
+  } catch (error) {
+    statusMsg.classList.add('error');
+    statusMsg.textContent = 'Something went wrong. Please try again or email me directly.';
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = 'Send message';
   }
 });
 
-/* Home links always scroll back to the very top */
+/* 6. Home links always scroll back to the very top */
 document.querySelectorAll('a[href="#hero"]').forEach((link) => {
   link.addEventListener('click', (event) => {
     event.preventDefault();

@@ -101,7 +101,6 @@
         <button type="button" class="filter-btn active" data-filter="all">All</button>
         <button type="button" class="filter-btn" data-filter="javascript">JavaScript</button>
         <button type="button" class="filter-btn" data-filter="bootstrap">Bootstrap</button>
-        <button type="button" class="filter-btn" data-filter="react">React</button>
       </div>
 
       <div class="project-grid">
@@ -153,30 +152,6 @@
           </div>
         </article>
 
-        <article class="project-card" data-tags="html css">
-          <div class="project-thumb" data-icon="📰">
-            <img src="images/projects/medium-clone.png" alt="Screenshot of the Medium landing page clone" loading="lazy" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback')}else{this.remove()}"/>
-          </div>
-          <div class="project-info">
-            <h3>Medium Landing Page Clone</h3>
-            <p>A structured, pixel-conscious recreation of Medium.com's landing page, built with clean HTML and CSS.</p>
-            <div class="project-tags"><span>HTML</span><span>CSS</span></div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-        </article>
-
-        <article class="project-card" data-tags="html css">
-          <div class="project-thumb" data-icon="📝">
-            <img src="images/projects/contact-form.png" alt="Screenshot of the Contact Form" loading="lazy" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback')}else{this.remove()}"/>
-          </div>
-          <div class="project-info">
-            <h3>Contact Form</h3>
-            <p>A validated contact/feedback form with clean UX and clear error/success states.</p>
-            <div class="project-tags"><span>HTML</span><span>CSS</span></div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-        </article>
-
         <article class="project-card" data-tags="bootstrap html css">
           <div class="project-thumb" data-icon="🛍️">
             <img src="images/projects/boutique.png" alt="Screenshot of the Boutique landing page" loading="lazy" data-fallback="https://s.wordpress.com/mshots/v1/https%3A%2F%2Fsky5532.github.io%2Fboutique-landing-page%2F?w=1200&amp;h=675" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback')}else{this.remove()}"/>
@@ -189,29 +164,6 @@
           </div>
         </article>
 
-        <article class="project-card" data-tags="html css javascript">
-          <div class="project-thumb" data-icon="🎓">
-            <img src="images/projects/student-portal.png" alt="Screenshot of the Student Portal" loading="lazy" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback')}else{this.remove()}"/>
-          </div>
-          <div class="project-info">
-            <h3>Student Portal</h3>
-            <p>A web interface for managing student records and academic information.</p>
-            <div class="project-tags"><span>HTML</span><span>CSS</span><span>JavaScript</span></div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-        </article>
-
-        <article class="project-card" data-tags="react tailwind">
-          <div class="project-thumb" data-icon="💳">
-            <img src="images/projects/sky-finance.png" alt="Screenshot of the Sky Finance onboarding UI" loading="lazy" onerror="if(this.dataset.fallback){this.src=this.dataset.fallback;this.removeAttribute('data-fallback')}else{this.remove()}"/>
-          </div>
-          <div class="project-info">
-            <h3>Sky Finance — Fintech Onboarding UI</h3>
-            <p>A modern onboarding flow UI concept for a fintech app, focused on clarity and accessibility.</p>
-            <div class="project-tags"><span>React</span><span>Tailwind CSS</span></div>
-            <a href="#" class="project-link">View Project →</a>
-          </div>
-        </article>
       </div>
     </section>
 
@@ -250,6 +202,7 @@
             <textarea id="message" name="message" rows="5" aria-describedby="message-error"></textarea>
             <span class="error-msg" id="message-error" role="alert"></span>
           </div>
+          <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-hidden="true" style="display:none"/>
           <button type="submit" class="btn btn-primary">Send message</button>
           <p class="form-status" id="form-status" role="status"></p>
         </form>
